@@ -45,3 +45,11 @@ answers = Answer.create!([
                            { body: 'Triangle with 2 equal sides', correct: true, question_id: questions[4].id },
                            { body: 'Paris', correct: true, question_id: questions.last.id }
                          ])
+
+test_passages = TestPassage.create!([
+                                      { test_id: tests.first.id, user_id: users[1].id },
+                                      { test_id: tests[1].id, user_id: users[1].id },
+                                      { test_id: tests[2].id, user_id: users.last.id },
+                                      { test_id: tests[3].id, user_id: users.last.id },
+                                      { test_id: tests.last.id, user_id: users.last.id }
+                                    ])
