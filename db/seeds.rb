@@ -32,8 +32,8 @@ questions = Question.create!([
                                { body: 'Who won the 2014 world Cup?', test_id: tests.first.id },
                                { body: 'Will Carioca come to Russia?', test_id: tests.first.id },
                                { body: 'The most decorated tennis player?', test_id: tests[1].id },
-                               { body: '3x+1=10, x = ?', test_id: tests[2] },
-                               { body: 'What is an isosceles triangle?', test_id: tests[3] },
+                               { body: '3x+1=10, x = ?', test_id: tests[2].id },
+                               { body: 'What is an isosceles triangle?', test_id: tests[3].id },
                                { body: 'What is the capital of France?', test_id: tests.last.id }
                              ])
 
