@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -5,3 +7,49 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+users = User.create!([
+                       { name: 'Admin', password: '111' },
+                       {  name: 'User1', password: '222'  },
+                       {  name: 'User2', password: '333'  }
+                     ])
+
+categories = Category.create!([
+                                { title: 'Sport' },
+                                { title: 'Math' },
+                                { title: 'Geography' }
+                              ])
+
+tests = Test.create!([
+                       { title: 'Footbal', level: 1, category_id: categories.first.id },
+                       { title: 'Tennis', level: 1,  category_id: categories.first.id },
+                       { title: 'Algebra', level: 1, category_id: categories[1].id },
+                       { title: 'Geometry', level: 0, category_id: categories[1].id },
+                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id }
+                     ])
+
+questions = Question.create!([
+                               { body: 'Who won the 2014 world Cup?', test_id: tests.first.id },
+                               { body: 'Will Carioca come to Russia?', test_id: tests.first.id },
+                               { body: 'The most decorated tennis player?', test_id: tests[1].id },
+                               { body: '3x+1=10, x = ?', test_id: tests[2].id },
+                               { body: 'What is an isosceles triangle?', test_id: tests[3].id },
+                               { body: 'What is the capital of France?', test_id: tests.last.id }
+                             ])
+
+answers = Answer.create!([
+                           { body: 'Germany', correct: true, question_id: questions.first.id },
+                           { body: 'No', correct: true, question_id: questions[1].id },
+                           { body: 'Roger Federer', correct: true, question_id: questions[2].id },
+                           { body: '3', correct: true, question_id: questions[3].id },
+                           { body: 'Triangle with 2 equal sides', correct: true, question_id: questions[4].id },
+                           { body: 'Paris', correct: true, question_id: questions.last.id }
+                         ])
+
+test_passages = TestPassage.create!([
+                                      { test_id: tests.first.id, user_id: users[1].id },
+                                      { test_id: tests[1].id, user_id: users[1].id },
+                                      { test_id: tests[2].id, user_id: users.last.id },
+                                      { test_id: tests[3].id, user_id: users.last.id },
+                                      { test_id: tests.last.id, user_id: users.last.id }
+                                    ])
