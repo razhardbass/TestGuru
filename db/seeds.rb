@@ -21,11 +21,11 @@ categories = Category.create!([
                               ])
 
 tests = Test.create!([
-                       { title: 'Footbal', level: 1, category_id: categories.first.id },
-                       { title: 'Tennis', level: 1,  category_id: categories.first.id },
-                       { title: 'Algebra', level: 1, category_id: categories[1].id },
-                       { title: 'Geometry', level: 0, category_id: categories[1].id },
-                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id }
+                       { title: 'Footbal', level: 1, category_id: categories.first.id, user_id: users[1].id },
+                       { title: 'Tennis', level: 1,  category_id: categories.first.id, user_id: users[1].id },
+                       { title: 'Algebra', level: 1, category_id: categories[1].id, user_id: users.last.id},
+                       { title: 'Geometry', level: 0, category_id: categories[1].id, user_id: users.last.id },
+                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id, user_id: users.last.id }
                      ])
 
 questions = Question.create!([

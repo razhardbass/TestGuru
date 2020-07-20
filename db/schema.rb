@@ -64,12 +64,6 @@ ActiveRecord::Schema.define(version: 2020_07_20_111006) do
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
-  create_table "tests_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "test_id", null: false
-    t.index ["user_id", "test_id"], name: "index_tests_users_on_user_id_and_test_id", unique: true
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "password", null: false
