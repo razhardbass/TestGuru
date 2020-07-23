@@ -6,7 +6,9 @@ class Test < ApplicationRecord
   has_many :test_users, dependent: :destroy
   has_many :users, through: :test_users
 
-  def self.tests_by_category(category)
-    Test.joins('INNER JOIN categories ON categories.id = tests.category_id').where("categories.title = :category", category: category).order(id: :desc).pluck(:title)
-  end
+  scope :easy, -> { where(level: 0..1) }
+  scope :medium, -> { where(level: 2..4) }
+  scope :hard, -> { where(level: 5..Float::INFINITY) }
+  scope :tests_by_category, -> (category) { joins(:category).where(categories: { title: category }).order(id: :desc).pluck(:title) }
+  scope :level_tests, -> (level) { where(tests: {level: level}) }
 end
