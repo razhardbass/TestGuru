@@ -21,11 +21,11 @@ categories = Category.create!([
                               ])
 
 tests = Test.create!([
-                       { title: 'Footbal', level: 1, category_id: categories.first.id },
-                       { title: 'Tennis', level: 1,  category_id: categories.first.id },
-                       { title: 'Algebra', level: 1, category_id: categories[1].id },
-                       { title: 'Geometry', level: 0, category_id: categories[1].id },
-                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id }
+                       { title: 'Footbal', level: 1, category_id: categories.first.id, creator: users[1].id },
+                       { title: 'Tennis', level: 1,  category_id: categories.first.id, creator: users[1].id },
+                       { title: 'Algebra', level: 1, category_id: categories[1].id, creator: users.last.id},
+                       { title: 'Geometry', level: 0, category_id: categories[1].id, creator: users.last.id },
+                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id, creator: users.last.id }
                      ])
 
 questions = Question.create!([
@@ -46,10 +46,11 @@ answers = Answer.create!([
                            { body: 'Paris', correct: true, question_id: questions.last.id }
                          ])
 
-test_passages = TestPassage.create!([
-                                      { test_id: tests.first.id, user_id: users[1].id },
-                                      { test_id: tests[1].id, user_id: users[1].id },
-                                      { test_id: tests[2].id, user_id: users.last.id },
-                                      { test_id: tests[3].id, user_id: users.last.id },
-                                      { test_id: tests.last.id, user_id: users.last.id }
-                                    ])
+
+                                  
+users.each do |user|
+  tests.each do |test|
+     user.tests.push(test)
+     user.save
+  end
+end
