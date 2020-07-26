@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :test_users, dependent: :destroy
   has_many :tests, through: :test_users
 
+  validates :name, presence: true
+
   def level_tests(level)
     tests.level_tests(level)
   end

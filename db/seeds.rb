@@ -9,9 +9,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create!([
-                       {  name: 'Admin', password: '111' },
-                       {  name: 'User1', password: '222'  },
-                       {  name: 'User2', password: '333'  }
+                       { name: 'Admin', password: '111', email: 'admin@mail.ru' },
+                       { name: 'User1', password: '222', email: 'Too4niyBorov@mail.ru' },
+                       { name: 'User2', password: '333', email: 'anjela_konfetka@mail.ru' }
                      ])
 
 categories = Category.create!([
@@ -21,11 +21,11 @@ categories = Category.create!([
                               ])
 
 tests = Test.create!([
-                       { title: 'Footbal', level: 1, category_id: categories.first.id, creator: users[1].id },
-                       { title: 'Tennis', level: 1,  category_id: categories.first.id, creator: users[1].id },
-                       { title: 'Algebra', level: 1, category_id: categories[1].id, creator: users.last.id},
-                       { title: 'Geometry', level: 0, category_id: categories[1].id, creator: users.last.id },
-                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id, creator: users.last.id }
+                       { title: 'Footbal', level: 1, category_id: categories.first.id, user_id: users[1].id },
+                       { title: 'Tennis', level: 1,  category_id: categories.first.id, user_id: users[1].id },
+                       { title: 'Algebra', level: 1, category_id: categories[1].id, user_id: users.last.id },
+                       { title: 'Geometry', level: 0, category_id: categories[1].id, user_id: users.last.id },
+                       { title: 'Capitals of countries', level: 0, category_id: categories.last.id, user_id: users.last.id }
                      ])
 
 questions = Question.create!([
@@ -46,11 +46,9 @@ answers = Answer.create!([
                            { body: 'Paris', correct: true, question_id: questions.last.id }
                          ])
 
-
-                                  
 users.each do |user|
   tests.each do |test|
-     user.tests.push(test)
-     user.save
+    user.tests.push(test)
+    user.save
   end
 end

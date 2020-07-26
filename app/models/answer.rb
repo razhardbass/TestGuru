@@ -3,5 +3,7 @@
 class Answer < ApplicationRecord
   belongs_to :question
 
-  scope :true_answer, -> { where(correct: true) }
+  validates :body, presence: true
+
+  scope :with_true_answer, -> { where(correct: true) }
 end
